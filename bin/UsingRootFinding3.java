@@ -73,7 +73,7 @@ public class UsingRootFinding3
 			{
 				Vcons = Vcons + houseConsume(t);
 				housecounter++;
-				System.out.println("Total volume consumed:   " + Vcons);
+				//System.out.println("Total volume consumed:   " + Vcons);   //I feel like removing this printline makes it faster
 			}
 
 			Vpumped = Vpumped + (pumping*numbhouses);   			// pumps "pumping"*number of houses litres per hour
