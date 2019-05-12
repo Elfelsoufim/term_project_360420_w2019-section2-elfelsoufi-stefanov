@@ -1,101 +1,69 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class Usinggoldensectionsearch
+public class UsingRootFinding2
 {
-	/** Start of the main method 
+	public static final int numbhouses = 10;									// Sets the number of houses present in the simulation
+	public static final int numbdays = 15;										// Sets the number of days that the simulation will run
+	public static final double upperBound = (30 * numbhouses) + 100; 			// Sets a (reasonable) upperbound for the root finding	
+	public static final double lowerBound = 5 * numbhouses;						// Sets a (reasonable) lowerbound for the root finding
+	public static final double tolerance = 0.0001;	
+	
+	/** Start of the main method here 
+		This main method is a rootfinding program which serves our optimization purpose	
+		The Root is the optimal pumping value PER HOUSE ! 
 	**/
-	public static final double upperBound = 100;              // Input formula here
-	public static final double lowerBound = 2;
-	public static final double tolerance = 0.001; 
-	public static final double Gpoint = 0.38197;
- 
 	public static void main(String[] args) 
 	{ 
-		double fx = 0, flower = 0, fupper = 0, root = 0;                      // Input a method here
+		double fx = 0, flower = 0, fupper = 0, root = 0;             								 
 		double midPoint = 0, upperPoint = 0, lowerPoint = 0;  
-  
-		Scanner kb = new Scanner(System.in); 
- 
+		double froot = 0;
+		int i = 0;
 		upperPoint = upperBound;
 		lowerPoint = lowerBound;
-		int i = 0;
- 
-		while (((Math.abs(upperPoint)) - (Math.abs(lowerPoint))) >= tolerance) 
+	
+		while ((Math.abs(upperPoint) - Math.abs(lowerPoint)) >= tolerance) 
 		{ 
-   
 			System.out.println(" iteration # " + i);
 			System.out.println(" xlower : " + lowerPoint);
-			System.out.println(" xupper : " + upperPoint); 
-   
-			double midPointB = lowerPoint + Gpoint * ( upperPoint - lowerPoint );
-			double midPointD = upperPoint - Gpoint * ( upperPoint - lowerPoint );
-   
-			System.out.println(" b : " + midPointB);
-			System.out.println(" d: " + midPointD);
-   
-			double fxB = evaluatefunction(midPointB);               // Do for A & B
-			double fxD = evaluatefunction(midPointD);
+			System.out.println(" xupper : " + upperPoint);
+		
+			midPoint = (upperPoint + lowerPoint ) / 2 ;
+		
+			double variable = midPoint; 															
+			fx = evaluatefunction(variable); 														
 			fupper = evaluatefunction(upperPoint);
 			flower = evaluatefunction(lowerPoint);
-   
-			System.out.println(" fb: " + fxB);
-			System.out.println(" fd: " + fxD);
-   
-			double x = 0;
-			if ( (upperPoint - midPointB) > (midPointB - lowerPoint) )  
-			{
-				x = midPointB + Gpoint * (upperPoint - midPointB);
-				fx = evaluatefunction(x);
-    
-				if ( fxD > fxB ) 
-				{
-					upperPoint = x;
-				}
-				else 
-				{
-					lowerPoint = midPointB;
-					midPointB = x; 
-				}
-    
-			}
+			
+			if ( fx * fupper < 0) 																	
+				{ 
+				lowerPoint = midPoint; 
+				} 
 			else 
-			{
-				x = midPointB - Gpoint * (upperPoint - midPointB);
-				fx = evaluatefunction(x);
-    
-				if ( fxB > fxD )
-				{
-					upperPoint = midPointB;
-					midPointB = x;
-				}
-				else 
-				{
-					lowerPoint = x;
-				}
-			}
-   
+				{ 
+				upperPoint = midPoint; 
+				fupper = evaluatefunction(upperPoint);
+				} 
 			i++; 
 		}
-  
+		
 		root = (upperPoint + lowerPoint ) / 2 ;
+		froot = evaluatefunction(root);											// Once the root is found, rerun the simulation to check minimum and maximum values
 		System.out.println(" Root is: " + root);
 
-	}	
-
+	}
+	
    
 	public static double evaluatefunction(double pumping)
 	{
 		int currentday = 1;
-		int numbdays = 1;
 		double Vcons = 0.0;
-		double Vpumped=0.0;
+		double Vpumped = 0.0;
 		double Vtower;
 		int t = 0;
 		int housecounter;
-		int numbhouses = 1;
-		double Vminimal = 10000;
-	
+		double Vminimal = 10000, Vmaximal = -1000;
+		
 		while (currentday <= numbdays)
 		{
 			housecounter = 1;
@@ -106,11 +74,15 @@ public class Usinggoldensectionsearch
 				System.out.println("Total volume consumed:   " + Vcons);
 			}
 			
-			Vpumped = Vpumped + (4*pumping);   //pumps "pumping"*4 litres per hour
-			Vtower = Vpumped - Vcons;
+			Vpumped = Vpumped + (pumping*numbhouses);   			// pumps "pumping"*number of houses litres per hour
+			Vtower = Vpumped - Vcons;								// Again, this will result in a pumping power per house optimal value
 			if (Vtower < Vminimal)
 			{
 				Vminimal = Vtower;
+			}
+			if (Vtower > Vmaximal)
+			{
+				Vmaximal = Vtower;
 			}
 			System.out.println("Total volume in tower:        " + Vtower);
 		  
@@ -124,6 +96,7 @@ public class Usinggoldensectionsearch
 		}
 	  
 		System.out.println("Total volume consumed:   " + Vcons);
+		System.out.println(" Vmax: \t"+ Vmaximal + "\t Vmin: \t" +Vminimal);
 		
 		return Vminimal;
 	}
@@ -146,35 +119,39 @@ public class Usinggoldensectionsearch
 		}
 		return V;
 	}
-   
+   /** 	This method is the core of the program
+		It simulates the water consumption for a house
+		for every hour of the day
+		Input time of the day, returns water consummed during that hour
+   */
 	public static double houseConsume(int t)
 	{
 		double V = 0.0;  
 		Random rand = new Random();
-		int n = rand.nextInt(10) + 1;   //can make 10% gaps btw chances
+		int n = rand.nextInt(10) + 1;   	//can make 10% gaps btw chances
 		int humansactive = 0;
 		
 		if (t==0)
 		{  V = 2.5;
-			if (n==1)      		  // shows a 10% chance
-			V = V + 1.0;
+			if (n==1)      		 			 // shows a 10% chance
+			V = V + 1.0;	
 		}
 		else if (t==1)
 		{  V = 2.5;
 		if (n==1 || n==2)        			//shows a 20% chance
-			V = V + 1.0;		 //do the rest accordingly with real life data
+			V = V + 1.0;		 
 		}
 		else if (t==2)
 		{  V = 2.5;
 			if (n==1 || n==2)
 			V = V + 1.0;
 		}
-		else if (t==3)   				// Till here done
+		else if (t==3)   				
 		{  V = 2.5;
 			if (n==1 || n==2 || n==3)
 			V = V + 1.0;
 		}
-		else if (t==4)                    // To do AFTER
+		else if (t==4)                    
 		{  V = 5.0;
 			if (n==1)
 			V = V + 5.0;
@@ -319,6 +296,9 @@ public class Usinggoldensectionsearch
          if (n==1 || n==2)
 	       V = V + 2.0;
 	   }
-	   return V*4;
-   }
-}
+	   return V*4;												// A multiplication by a factor of four is required
+   }															// After inputing the data to fit perfectly the hourly consumption curve (see data collection)
+																// We realised that the graph fit water consumption of a single person
+																// Assuming a household of 4 persons perfectly fits the current water consumption data
+   
+}																

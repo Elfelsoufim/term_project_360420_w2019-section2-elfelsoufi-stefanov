@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class Usinggoldensectionsearch
+public class UsingGoldenSectionSearch
 {
 	/** Start of the main method 
 	**/
