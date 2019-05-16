@@ -401,9 +401,10 @@ public static void storeData(double pumping, double numbdays, double numbhouses,
 		else
 		{
 		double towersize = Vmaximal - Vminimal;
-		//double towersizePerHouse = towersize / numbhouses;
+		double towersizePerHouse = towersize / (double) numbhouses;
 
-		System.out.println("The optimal size of a water tower for " + (int) numbhouses + " houses is of:  " + towersize + " litres.");
+		System.out.println(" The optimal size of a water tower for " + (int) numbhouses + " houses is of:  " + towersize + " litres.");
+		System.out.println(" This equals : " + towersizePerHouse + "L per house. ");
 		}
 	}
 
