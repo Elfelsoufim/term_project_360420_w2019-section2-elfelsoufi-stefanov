@@ -1,15 +1,10 @@
 import java.io.*;
-import java.awt.*;
-import javax.swing.*;
-import org.math.plot.*;
-import org.math.plot.plotObjects.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class UsingRootFinding5
 {
-	public static final int numbhouses = 1500;					// Sets the number of houses present in the simulation
-	public static final int numbdays = 5;						    // Sets the number of days that the simulation will run
+	public static final int numbhouses = 1500;		// Sets the number of houses present in the simulation
+	public static final int numbdays = 5;			// Sets the number of days that the simulation will run
 	//NOTE: This program is made to be run maximum for 5 days, as the randomness of it makes it significantly stray
 	//      from a stable value. More on this in the report. The less the number of houses, the more it is accurate.
 
@@ -251,94 +246,94 @@ public class UsingRootFinding5
 			if (n==1)
 			V = V + 5.0;
 		}
-	   else if (t==13)
-	   {  humansactive = 0;
-		  V = 8.5 + humansAwake(humansactive, t);
+	   	else if (t==13)
+	  	 {  humansactive = 0;
+			V = 8.5 + humansAwake(humansactive, t);
 
-         if (n==1)
-		   V = V + 5.0;
-	   }
-	   else if (t==14)
-	   {  humansactive = 0;
-		  V = 9.0 + humansAwake(humansactive, t);
+        	 if (n==1)
+			V = V + 5.0;
+		}
+		else if (t==14)
+	 	{  humansactive = 0;
+			V = 9.0 + humansAwake(humansactive, t);
 
-         if (n==1)
-		   V = V + 5.0;
-	   }
-	   else if (t==15)
-	   {  humansactive = 1;
-		  V = 8.0 + humansAwake(humansactive, t);
+         	if (n==1)
+			   V = V + 5.0;
+	  	 }
+	   	else if (t==15)
+	   	{  humansactive = 1;
+		  	V = 8.0 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2)
-		   V = V + 2.0;
-	   }
-	   else if (t==16)
-	   {  humansactive = 3;
-          V = 5.0 + humansAwake(humansactive, t);
+         	if (n==1 || n==2)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==16)
+	   	{  humansactive = 3;
+          	V = 5.0 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4)
-		   V = V + 2.0;
-	   }
-	   else if (t==17)
-	   {  humansactive = 4;
-		  V = 3.5 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4)
+			   V = V + 2.0;
+	   	}
+	   	else if (t==17)
+	   	{  humansactive = 4;
+		  	V = 3.5 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4 || n==5)
-		   V = V + 2.0;
-	   }
-	   else if (t==18)
-	   {  humansactive = 4;
-		  V = 3.5 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4 || n==5)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==18)
+	   	{  humansactive = 4;
+		 	V = 3.5 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4 || n==5)
-		   V = V + 2.0;
-	   }
-	   else if (t==19)
-	   {  humansactive = 4;
-          V = 3.5 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4 || n==5)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==19)
+	   	{  humansactive = 4;
+          		V = 3.5 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4 || n==5)
-		   V = V + 2.0;
-	   }
-	   else if (t==20)
-	   {  humansactive = 4;
-		  V = 3.5 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4 || n==5)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==20)
+	   	{  humansactive = 4;
+		  	V = 3.5 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4 || n==5)
-		   V = V + 2.0;
-	   }
-	   else if (t==21)
-	   {  humansactive = 4;
-		  V = 3.0 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4 || n==5)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==21)
+	   	{  humansactive = 4;
+		  	V = 3.0 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4)
-		   V = V + 2.0;
-	   }
-	   else if (t==22)
-	   {  humansactive = 3;
-		  V = 3.5 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4)
+		   	V = V + 2.0;
+	   	}
+	   	else if (t==22)
+	   	{  humansactive = 3;
+		  	V = 3.5 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3 || n==4)
-		   V = V + 2.0;
-	   }
-	   else																					//ends at t=23 as it starts at t=0, then 23 is the 24th hour
-	   {  humansactive = 2;
-		  V = 4.0 + humansAwake(humansactive, t);
+         	if (n==1 || n==2 || n==3 || n==4)
+		   	V = V + 2.0;
+	   	}
+	   	else								//ends at t=23 as it starts at t=0, then 23 is the 24th hour
+	   	{  humansactive = 2;
+		  	V = 4.0 + humansAwake(humansactive, t);
 
-         if (n==1 || n==2 || n==3)
-		   V = V + 2.0;
-	   }
-	   return V*4;												// A multiplication by a factor of four is required
-   }															// After inputing the data to fit perfectly the hourly consumption curve (see data collection)
-																// We realised that the graph fit water consumption of a single person
-																// Assuming a household of 4 persons perfectly fits the current water consumption data
+         	if (n==1 || n==2 || n==3)
+		   	V = V + 2.0;
+	   	}
+	   	return V*4;						// A multiplication by a factor of four is required
+   }									// After inputing the data to fit perfectly the hourly consumption curve (see data collection)
+									// We realised that the graph fit water consumption of a single person
+									// Assuming a household of 4 persons perfectly fits the current water consumption data
 
-		/** This method will store the volume of the tower with respect to Time
-				in a new file, and return an array of the Vtower values. To change
-				what the method prints in a new file cange the variables in
-				outputFile.printf(...), DO IT BOTH TIMES THOUGH*/
-		public static void storeData(double pumping, double numbdays, double numbhouses, double Vtower)
-		{
+/** This method will store the volume of the tower with respect to Time
+	in a new file, and return an array of the Vtower values. To change
+	what the method prints in a new file cange the variables in
+	outputFile.printf(...), DO IT BOTH TIMES THOUGH*/
+public static void storeData(double pumping, double numbdays, double numbhouses, double Vtower)
+{
       //some parts copied from ZombiesStudentVersion
 
      String filename = "StoredData.txt";
@@ -382,7 +377,7 @@ public class UsingRootFinding5
  			//System.out.println("Total volume in tower:        " + Vtower);
 
  			t++;
-      tofday++;
+      			tofday++;
 
  			if (tofday >= 24)
  			{
@@ -390,12 +385,12 @@ public class UsingRootFinding5
  				tofday = 0;
  			}
        //store the vars
-       outputFile.printf("%.3f\t %.3f \n", t, Vtower);
+       	outputFile.printf("%.3f\t %.3f \n", t, Vtower);
  		}
 
  		System.out.println(" Vmax: \t"+ Vmaximal + "\t Vmin: \t" +Vminimal);
 
-    outputFile.close();
+    	outputFile.close();
 
 		Vtower = 0.0;
 
