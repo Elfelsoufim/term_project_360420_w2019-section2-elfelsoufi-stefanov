@@ -1,6 +1,6 @@
 # Data 
 
-#### Graph:
+#### Water Consumption as a function of time for an average household
 ![alt text](https://github.com/Elfelsoufim/term_project_360420_w2019-section2-elfelsoufi-stefanov/blob/master/data/image.gif "image")
 
 #### Method:
@@ -37,6 +37,7 @@ Hour of the day | Water consumed (gal) | Water consumed (liters)
 
 
 Total consumed in a day on average per person: 268.239 L
+
 Total consumed in a day on average per household : 1072.956 L
 
 ###### Note: In the program, liters are used.
