@@ -6,7 +6,7 @@ HouseConsume.java is the elementary accurate water consumption simulator (enter 
 
 UsingRootFinding5.java is the latest actual program (the most accurate).
 
-It requires META-INF, org and jmathplot files to run.
+It DOES NOT require META-INF, org and jmathplot files to run, while some previous ones did because of importing useless  libraries for our purposes.
 
 It stores the data in a file (for the last run): First column is hours, second is water volume in water tower.
 
